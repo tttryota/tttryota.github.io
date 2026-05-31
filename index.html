@@ -21,12 +21,10 @@
       --border: #222;
       --border-hover: #333;
       --text: #e8e8e8;
-      --muted: #777;
-      --accent: #6e56cf;
-      --accent-soft: rgba(110, 86, 207, .12);
-      --tag-bg: #1e1e1e;
-      --tag-text: #999;
-      --max-width: 800px;
+      --muted: #aaa;
+      --accent: #a89af0;
+      --accent-soft: rgba(168, 154, 240, .12);
+      --max-width: 900px;
     }
 
     body {
@@ -145,83 +143,208 @@
 
     /* Project Grid */
     .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
 
     /* Project Card */
     .project-card {
-      display: block;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
-      text-decoration: none;
+      padding: 0;
       color: var(--text);
-      transition: background .2s, border-color .2s, transform .2s;
+      transition: border-color .2s;
       animation: fadeUp .5s ease-out both;
       animation-delay: calc(var(--i, 0) * .08s);
+      overflow: hidden;
     }
 
-    a.project-card:hover {
-      background: var(--surface-hover);
+    .project-card:hover {
       border-color: var(--border-hover);
-      transform: translateY(-2px);
-      cursor: pointer;
     }
 
-    .project-header {
+    /* Card Header */
+    .card-header {
       display: flex;
       align-items: center;
-      gap: .5rem;
-      margin-bottom: .4rem;
+      gap: .75rem;
+      padding: 1.5rem 1.5rem .5rem;
     }
 
     .app-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       object-fit: cover;
       flex-shrink: 0;
     }
 
-    .project-card h3 {
-      font-size: 1.05rem;
+    .card-header h3 {
+      font-size: 1.1rem;
       font-weight: 700;
+      flex: 1;
     }
 
-    .project-tagline {
-      font-size: .78rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: .5rem;
-    }
-
-    .project-desc {
-      font-size: .83rem;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: .8rem;
-    }
-
-    .tags {
+    /* Card Links */
+    .card-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-      margin-bottom: .8rem;
+      gap: .5rem;
+      margin-left: auto;
+      flex-shrink: 0;
     }
 
-    .tag {
-      font-size: .68rem;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      padding: .2rem .55rem;
+    .card-links a {
+      font-size: .8rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: .3rem .7rem;
+      border: 1px solid var(--accent);
       border-radius: 6px;
-      border: 1px solid var(--border);
+      transition: background .2s, color .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
     }
 
+    .card-links a svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    .card-links a:hover {
+      background: var(--accent-soft);
+      color: #fff;
+    }
+
+    /* Badge */
+    .badge {
+      font-size: .65rem;
+      font-weight: 500;
+      padding: .15rem .5rem;
+      border-radius: 4px;
+      letter-spacing: .02em;
+      vertical-align: middle;
+      margin-left: .4rem;
+      position: relative;
+      top: -1px;
+    }
+
+    .badge-server {
+      background: rgba(56, 189, 148, .12);
+      color: #38bd94;
+      border: 1px solid rgba(56, 189, 148, .25);
+    }
+
+    .badge-local {
+      background: rgba(168, 154, 240, .12);
+      color: var(--accent);
+      border: 1px solid rgba(168, 154, 240, .25);
+    }
+
+    /* Card Body (fade-truncated) */
+    .card-body {
+      position: relative;
+      max-height: 180px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-height .4s ease;
+    }
+
+    .card-body-inner {
+      padding: .5rem 1.5rem 1.5rem;
+    }
+
+    .card-body h4 {
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.1rem 0 .45rem;
+      border-left: 2px solid var(--accent);
+      padding-left: .6rem;
+    }
+
+    .card-body h4:first-child {
+      margin-top: .25rem;
+    }
+
+    .card-body h5 {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin: .8rem 0 .3rem;
+    }
+
+    .card-body p,
+    .card-body li {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .card-body ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    .card-body ul li {
+      margin-bottom: .2rem;
+    }
+
+    .card-body ul ul {
+      margin-top: .2rem;
+    }
+
+    /* Fade overlay */
+    .card-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(transparent 0%, var(--surface) 60%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 16px;
+      pointer-events: none;
+    }
+
+    .card-fade-text {
+      font-size: .8rem;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+
+    .project-card.open .card-fade {
+      display: none;
+    }
+
+    /* Collapse button (visible when open) */
+    .card-collapse {
+      display: none;
+      text-align: center;
+      padding: .5rem 1.5rem 1.2rem;
+    }
+
+    .card-collapse span {
+      font-size: .8rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color .2s;
+      letter-spacing: .05em;
+    }
+
+    .card-collapse span:hover {
+      color: var(--text);
+    }
+
+    .project-card.open .card-collapse {
+      display: block;
+    }
 
     /* Footer */
     .site-footer {
@@ -242,12 +365,28 @@
         padding: 0 1.2rem 2rem
       }
 
-      .project-grid {
-        grid-template-columns: 1fr
+      .card-header {
+        padding: 1.2rem 1.2rem .4rem;
+        flex-wrap: wrap;
       }
 
-      .project-card {
-        padding: 1.2rem
+      .card-links {
+        margin-left: 0;
+        width: 100%;
+        margin-top: .4rem;
+      }
+
+      .card-body-inner {
+        padding: .4rem 1.2rem 1.2rem;
+      }
+
+      .card-collapse {
+        padding: 0 1.2rem .8rem;
+      }
+
+      .app-icon {
+        width: 44px;
+        height: 44px;
       }
     }
 
@@ -260,8 +399,16 @@
         padding: 0 1rem 1.5rem
       }
 
-      .project-card {
-        padding: 1rem
+      .card-header {
+        padding: 1rem 1rem .3rem;
+      }
+
+      .card-body-inner {
+        padding: .3rem 1rem 1rem;
+      }
+
+      .card-collapse {
+        padding: 0 1rem .6rem;
       }
     }
   </style>
@@ -281,7 +428,7 @@
     </div>
 
     <h1>tsuryoryo</h1>
-    <p class="bio">Developer</p>
+    <p class="bio">フルスタック（にならざるをえなかった）エンジニア</p>
 
     <div class="hero-links">
       <a href="https://github.com/tttryota" target="_blank" rel="noopener">
@@ -296,57 +443,140 @@
 
   <main>
     <section class="section" id="apps">
-      <h2 class="section-title">Published Apps</h2>
+      <h2 class="section-title">Published Mobile Apps</h2>
       <div class="project-grid">
 
-        <a class="project-card" style="--i:0"
-          href="https://apps.apple.com/jp/app/peacle-%E5%8F%8B%E9%81%94-%E6%8E%A8%E3%81%97-%E5%AE%B6%E6%97%8F-%E9%A1%A7%E5%AE%A2-%E4%BA%BA%E3%81%AE%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA/id6761370755"
-          target="_blank" rel="noopener">
-          <div class="project-header">
+        <!-- Peacle -->
+        <div class="project-card" style="--i:0">
+          <div class="card-header">
             <img class="app-icon" src="assets/peacle-icon.png" alt="Peacle">
-            <h3>Peacle</h3>
+            <h3>Peacle <span class="badge badge-local">Client only</span></h3>
+            <div class="card-links">
+              <a href="https://apps.apple.com/jp/app/peacle-%E5%8F%8B%E9%81%94-%E6%8E%A8%E3%81%97-%E5%AE%B6%E6%97%8F-%E9%A1%A7%E5%AE%A2-%E4%BA%BA%E3%81%AE%E6%83%85%E5%A0%B1%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA/id6761370755" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>App Store</a>
+            </div>
           </div>
-          <p class="project-tagline">人間関係を記録する</p>
-          <p class="project-desc">連絡先・コミュニティ・イベント・タスク。ヒトに関する情報を一元管理するアプリ。リマインド通知もいけます。</p>
-          <div class="tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Expo</span>
-            <span class="tag">SQLite</span>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>人に関する情報を管理できるアプリ</p>
+              <h4>なぜ作ったか</h4>
+              <p>同様のコンセプトのアプリはすでに存在しており、アプリ評価からもペインが確実に存在することを確認した。そこで、ユーザーストーリーを整理したところ、差別化の余地があり競合を吸収できると判断した。</p>
+              <h4>特徴</h4>
+              <ul>
+                <li>人との接点（一緒にしたこと・TODO・リマインド・振り返りたい情報）をおとしこんだ機能</li>
+              </ul>
+              <h4>技術</h4>
+              <ul>
+                <li>React Native 0.83 / Expo 55</li>
+                <li>Tamagui 2.0-rc</li>
+                <li>Expo SQLite</li>
+                <li>Firebase (Push Notifications / Remote Config)</li>
+                <li>RevenueCat</li>
+                <li>Google Ads</li>
+                <li>Expo Router</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
-        </a>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
 
-        <a class="project-card" style="--i:1"
-          href="https://apps.apple.com/jp/app/puchize-%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%83%97%E3%83%81%E8%B4%85%E6%B2%A2%E3%82%92%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%BE%E3%81%99/id6759827919"
-          target="_blank" rel="noopener">
-          <div class="project-header">
+        <!-- Puchize -->
+        <div class="project-card" style="--i:1">
+          <div class="card-header">
             <img class="app-icon" src="assets/puchize-icon.png" alt="Puchize">
-            <h3>Puchize</h3>
+            <h3>Puchize <span class="badge badge-local">Client only</span></h3>
+            <div class="card-links">
+              <a href="https://apps.apple.com/jp/app/puchize-%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E3%83%97%E3%83%81%E8%B4%85%E6%B2%A2%E3%82%92%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%97%E3%81%BE%E3%81%99/id6759827919" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>App Store</a>
+            </div>
           </div>
-          <p class="project-tagline">プチ贅沢を応援する</p>
-          <p class="project-desc">無駄遣いを我慢した分がご褒美に。ヒートマップカレンダー・ウィジェット対応の節約サポートアプリ。</p>
-          <div class="tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Expo</span>
-            <span class="tag">SQLite</span>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>我慢をまとめてご褒美に昇華させるアプリ</p>
+              <h4>なぜ作ったか</h4>
+              <p>我慢した金額を貯金するコンセプトのアプリは存在するが、それを使うことに焦点をあてたアプリは存在しなかったため（需要としては弱いが、せっかく思いついたので差別化して形にしたエゴアプリ）</p>
+              <h4>特徴</h4>
+              <ul>
+                <li>スタイリッシュなデザイン</li>
+                <li>満足感のあるフィードバックと常に動きのあるhome画面（マーキー）
+                  <ul>
+                    <li>20代の男女（会社員）が利用することを想定</li>
+                  </ul>
+                </li>
+              </ul>
+              <h4>技術</h4>
+              <ul>
+                <li>React Native 0.81 / Expo 54</li>
+                <li>Tamagui</li>
+                <li>Zustand</li>
+                <li>Expo SQLite</li>
+                <li>Google Ads (AdMob)</li>
+                <li>React Native Reanimated</li>
+                <li>Widget Extension</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
-        </a>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
 
-        <a class="project-card" style="--i:2"
-          href="https://apps.apple.com/jp/app/relavo-%E8%A8%98%E9%8C%B2-%E3%82%BF%E3%82%B0-%E3%83%A9%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%A7-%E5%A5%BD%E3%81%8D-%E3%82%92%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%8B/id6758210673"
-          target="_blank" rel="noopener">
-          <div class="project-header">
+        <!-- Relavo -->
+        <div class="project-card" style="--i:2">
+          <div class="card-header">
             <img class="app-icon" src="assets/relavo-icon.png" alt="Relavo">
-            <h3>Relavo</h3>
+            <h3>Relavo <span class="badge badge-server">Client + Server</span></h3>
+            <div class="card-links">
+              <a href="https://apps.apple.com/jp/app/relavo-%E8%A8%98%E9%8C%B2-%E3%82%BF%E3%82%B0-%E3%83%A9%E3%83%B3%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%A7-%E5%A5%BD%E3%81%8D-%E3%82%92%E8%A6%8B%E3%81%A4%E3%81%91%E3%82%8B/id6758210673" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>App Store</a>
+            </div>
           </div>
-          <p class="project-tagline">体験を記録し、振り返る</p>
-          <p class="project-desc">体験・行動を記録して振り返る価値観再発見アプリ。サーバーサイドAPI連携。</p>
-          <div class="tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Expo</span>
-            <span class="tag">Django</span>
-            <span class="tag">PostgreSQL</span>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>タグ方式で体験を記録し、スコアベースのランキングによる相対評価で価値観を磨くアプリ。物事の評価は自身の過去との比較によって実現され、その行為の繰り返すことで価値観を明らかにする。</p>
+              <h4>なぜ作ったか</h4>
+              <p>以下を同時に実現するサービスが存在せず、ニッチながらもペインがあると判断したから（ただしターゲットは絞り切れていない）</p>
+              <ul>
+                <li>体験を記録する</li>
+                <li>タグで整理する</li>
+                <li>固定ではなく柔軟なランキングを生成する</li>
+              </ul>
+              <h4>特徴</h4>
+              <ul>
+                <li>ユーザーの「こうなるだろう」を裏切らない操作感</li>
+                <li>コンセプトを体現したUX
+                  <ul>
+                    <li>スコアは過去の評価を可視化した上で決定できる</li>
+                  </ul>
+                </li>
+                <li>ゲーミフィケーション要素（記録数に応じたバッジ獲得）で記録作成のモチベーション維持</li>
+              </ul>
+              <h4>技術スタック</h4>
+              <h5>Mobile</h5>
+              <ul>
+                <li>React Native 0.81 / Expo 54</li>
+                <li>Tamagui</li>
+                <li>Jotai</li>
+                <li>TanStack Query</li>
+                <li>React Native IAP</li>
+                <li>Sentry</li>
+                <li>Google Sign-In / Apple Auth</li>
+              </ul>
+              <h5>Backend</h5>
+              <ul>
+                <li>Django 4.2 / DRF</li>
+                <li>PostgreSQL (Neon)</li>
+                <li>JWT Auth (SimpleJWT)</li>
+                <li>Cloudflare R2 (boto3経由)</li>
+                <li>Sentry</li>
+                <li>Gunicorn</li>
+                <li>Render (ホスティング)</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
-        </a>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
 
       </div>
     </section>
@@ -355,41 +585,120 @@
       <h2 class="section-title">Developer Tools</h2>
       <div class="project-grid">
 
-        <a class="project-card" style="--i:3" href="https://github.com/tttryota/obsidian-rag-langgraph" target="_blank"
-          rel="noopener">
-          <div class="project-header">
+        <!-- Obsidian RAG Learning -->
+        <div class="project-card" style="--i:3">
+          <div class="card-header">
             <h3>Obsidian RAG Learning</h3>
+            <div class="card-links">
+              <a href="https://github.com/tttryota/obsidian-rag-langgraph" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
+            </div>
           </div>
-          <p class="project-desc">ローカルAI学習コンパニオン。Obsidianノートを取り込み、RAGでロードマップ提案・適応型クイズ出題。</p>
-          <div class="tags">
-            <span class="tag">FastAPI</span>
-            <span class="tag">LangGraph</span>
-            <span class="tag">ChromaDB</span>
-            <span class="tag">Docker</span>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>ローカルで実現するprogate的コーディング学習アプリ</p>
+              <h4>なぜ作ったか</h4>
+              <ul>
+                <li>AIエージェントシステムを構築したかった（手始めにlanggraphを選定）</li>
+                <li>生成AI時代にコーディングするモチベーションを獲得したかった</li>
+                <li>claude design × PencilによるFigma非依存での開発をやりたかった</li>
+              </ul>
+              <h4>特徴</h4>
+              <ul>
+                <li>codex app-serverでのLLM活用</li>
+              </ul>
+              <h4>技術</h4>
+              <ul>
+                <li>FastAPI</li>
+                <li>LangGraph</li>
+                <li>ChromaDB</li>
+                <li>Docker</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
-        </a>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
 
-        <a class="project-card" style="--i:4" href="https://github.com/tttryota/tdd-harness" target="_blank"
-          rel="noopener">
-          <div class="project-header">
+        <!-- TDD Harness -->
+        <div class="project-card" style="--i:4">
+          <div class="card-header">
             <h3>TDD Harness</h3>
+            <div class="card-links">
+              <a href="https://github.com/tttryota/tdd-harness" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
+            </div>
           </div>
-          <p class="project-desc">テストファースト・セルフチェック・外部レビューを強制化するLLM-powered TDD自動化オーケストレーター。</p>
-          <div class="tags">
-            <span class="tag">Node.js</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Claude</span>
-            <span class="tag">Codex</span>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>LLMの非決定的なアウトプットを、複数ゲートによるチェックを強制することで規格化されたアウトプット品質に近づけるためのFW</p>
+              <h4>なぜ作ったか</h4>
+              <p>claude code等のskillは分割されたコンテキストでしかなく、品質や再現性を担保できない。そこで、コーディング業務をワークフロー化し、注入するコンテキストを限定的なものにする。そして、レビュー観点を整理して強制することで、無関心の谷の発生やサボり癖・暴走を排除し、「100点」のコードに近づく仕組みを構築したかった。</p>
+              <h4>特徴</h4>
+              <ul>
+                <li>使用するLLMを任意で選択できるprofileシステム
+                  <ul>
+                    <li>codex app-server</li>
+                    <li>claude -p</li>
+                  </ul>
+                </li>
+                <li>多重・複数種LLMによる観点別レビューゲート</li>
+                <li>LLM動作のログ出力によるオブザーバビリティ</li>
+                <li>ワークフロー自体をLLMに実行させる前提のpilot用スキルの整備</li>
+                <li>（フロントエンド側は不完全）</li>
+              </ul>
+              <h4>技術</h4>
+              <ul>
+                <li>Node.js 22+</li>
+                <li>TypeScript 5.8</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
-        </a>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
 
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2025 tttryota</p>
+    <p>&copy; 2025 - 2026 tttryota</p>
   </footer>
+
+  <script>
+    function toggleCard(bodyEl) {
+      var card = bodyEl.closest('.project-card');
+      var body = card.querySelector('.card-body');
+      var inner = card.querySelector('.card-body-inner');
+
+      if (card.classList.contains('open')) {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.offsetHeight;
+        body.style.maxHeight = '180px';
+        card.classList.remove('open');
+      } else {
+        card.classList.add('open');
+        body.style.maxHeight = inner.scrollHeight + 40 + 'px';
+        body.addEventListener('transitionend', function handler() {
+          if (card.classList.contains('open')) {
+            body.style.maxHeight = 'none';
+          }
+          body.removeEventListener('transitionend', handler);
+        });
+      }
+    }
+
+    function collapseCard(el) {
+      var card = el.closest('.project-card');
+      var body = card.querySelector('.card-body');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.offsetHeight;
+      body.style.maxHeight = '180px';
+      card.classList.remove('open');
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
 
 </body>
 
