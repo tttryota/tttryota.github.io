@@ -10,6 +10,15 @@
 - codex app-serverでのLLM活用
 
 # 技術
+## Frontend
+- React 19 / Vite
+- Tailwind CSS v4
+- shadcn/ui
+- TanStack Query
+- Zustand
+- React Router
+
+## Backend
 - FastAPI
 - LangGraph
 - ChromaDB

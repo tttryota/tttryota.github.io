@@ -442,12 +442,102 @@
   </header>
 
   <main>
+    <section class="section" id="tools">
+      <h2 class="section-title">開発したツール</h2>
+      <div class="project-grid">
+
+        <!-- TDD Harness -->
+        <div class="project-card" style="--i:0">
+          <div class="card-header">
+            <h3>TDD Harness</h3>
+            <div class="card-links">
+              <a href="https://github.com/tttryota/tdd-harness" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
+            </div>
+          </div>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>LLMの非決定的なアウトプットを、複数ゲートによるチェックを強制することで規格化されたアウトプット品質に近づけるためのFW</p>
+              <h4>なぜ作ったか</h4>
+              <p>claude code等のskillは分割されたコンテキストでしかなく、品質や再現性を担保できない。そこで、コーディング業務をワークフロー化し、注入するコンテキストを限定的なものにする。そして、レビュー観点をステップごとに当てることで品質を理想に近づける。そういった機構で、無関心の谷の発生・サボり癖・暴走を排除し、「100点」のコードに近づく仕組みを構築したかった。</p>
+              <h4>特徴</h4>
+              <ul>
+                <li>使用するLLMを任意で選択できるprofileシステム
+                  <ul>
+                    <li>codex app-server</li>
+                    <li>claude -p</li>
+                  </ul>
+                </li>
+                <li>多重・複数種LLMによる観点別レビューゲート</li>
+                <li>LLM動作のログ出力によるオブザーバビリティ</li>
+                <li>ワークフロー自体をLLMに実行させる前提のpilot用スキルの整備</li>
+                <li>（フロントエンド側は不完全）</li>
+              </ul>
+              <h4>技術</h4>
+              <ul>
+                <li>Node.js 22+</li>
+                <li>TypeScript 5.8</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
+          </div>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
+
+        <!-- Obsidian RAG Learning -->
+        <div class="project-card" style="--i:1">
+          <div class="card-header">
+            <h3>Coding Arena by LangGraph</h3>
+            <div class="card-links">
+              <a href="https://github.com/tttryota/obsidian-rag-langgraph" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
+            </div>
+          </div>
+          <div class="card-body" onclick="toggleCard(this)">
+            <div class="card-body-inner">
+              <h4>コンセプト</h4>
+              <p>ローカルで実現するprogate的コーディング学習アプリ</p>
+              <h4>なぜ作ったか</h4>
+              <ul>
+                <li>AIエージェントシステムを構築したかった（手始めにlanggraphを選定）</li>
+                <li>生成AI時代にコーディングするモチベーションを獲得したかった</li>
+                <li>claude design × PencilによるFigma非依存での開発をやりたかった</li>
+              </ul>
+              <h4>特徴</h4>
+              <ul>
+                <li>codex app-serverでのLLM活用</li>
+              </ul>
+              <h4>技術</h4>
+              <h5>Frontend</h5>
+              <ul>
+                <li>React 19 / Vite</li>
+                <li>Tailwind CSS v4</li>
+                <li>shadcn/ui</li>
+                <li>TanStack Query</li>
+                <li>Zustand</li>
+                <li>React Router</li>
+              </ul>
+              <h5>Backend</h5>
+              <ul>
+                <li>FastAPI</li>
+                <li>LangGraph</li>
+                <li>ChromaDB</li>
+                <li>Docker</li>
+              </ul>
+            </div>
+            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
+          </div>
+          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
+        </div>
+
+      </div>
+    </section>
+
     <section class="section" id="apps">
-      <h2 class="section-title">Published Mobile Apps</h2>
+      <h2 class="section-title">リリースしたアプリ</h2>
       <div class="project-grid">
 
         <!-- Peacle -->
-        <div class="project-card" style="--i:0">
+        <div class="project-card" style="--i:2">
           <div class="card-header">
             <img class="app-icon" src="assets/peacle-icon.png" alt="Peacle">
             <h3>Peacle <span class="badge badge-local">Client only</span></h3>
@@ -482,7 +572,7 @@
         </div>
 
         <!-- Puchize -->
-        <div class="project-card" style="--i:1">
+        <div class="project-card" style="--i:3">
           <div class="card-header">
             <img class="app-icon" src="assets/puchize-icon.png" alt="Puchize">
             <h3>Puchize <span class="badge badge-local">Client only</span></h3>
@@ -522,7 +612,7 @@
         </div>
 
         <!-- Relavo -->
-        <div class="project-card" style="--i:2">
+        <div class="project-card" style="--i:4">
           <div class="card-header">
             <img class="app-icon" src="assets/relavo-icon.png" alt="Relavo">
             <h3>Relavo <span class="badge badge-server">Client + Server</span></h3>
@@ -581,83 +671,31 @@
       </div>
     </section>
 
-    <section class="section" id="tools">
-      <h2 class="section-title">Developer Tools</h2>
+    <section class="section" id="about">
+      <h2 class="section-title">こんな人です</h2>
       <div class="project-grid">
-
-        <!-- Obsidian RAG Learning -->
-        <div class="project-card" style="--i:3">
-          <div class="card-header">
-            <h3>Obsidian RAG Learning</h3>
-            <div class="card-links">
-              <a href="https://github.com/tttryota/obsidian-rag-langgraph" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
-            </div>
-          </div>
+        <div class="project-card" style="--i:5">
           <div class="card-body" onclick="toggleCard(this)">
             <div class="card-body-inner">
-              <h4>コンセプト</h4>
-              <p>ローカルで実現するprogate的コーディング学習アプリ</p>
-              <h4>なぜ作ったか</h4>
               <ul>
-                <li>AIエージェントシステムを構築したかった（手始めにlanggraphを選定）</li>
-                <li>生成AI時代にコーディングするモチベーションを獲得したかった</li>
-                <li>claude design × PencilによるFigma非依存での開発をやりたかった</li>
-              </ul>
-              <h4>特徴</h4>
-              <ul>
-                <li>codex app-serverでのLLM活用</li>
-              </ul>
-              <h4>技術</h4>
-              <ul>
-                <li>FastAPI</li>
-                <li>LangGraph</li>
-                <li>ChromaDB</li>
-                <li>Docker</li>
-              </ul>
-            </div>
-            <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
-          </div>
-          <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
-        </div>
-
-        <!-- TDD Harness -->
-        <div class="project-card" style="--i:4">
-          <div class="card-header">
-            <h3>TDD Harness</h3>
-            <div class="card-links">
-              <a href="https://github.com/tttryota/tdd-harness" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>GitHub</a>
-            </div>
-          </div>
-          <div class="card-body" onclick="toggleCard(this)">
-            <div class="card-body-inner">
-              <h4>コンセプト</h4>
-              <p>LLMの非決定的なアウトプットを、複数ゲートによるチェックを強制することで規格化されたアウトプット品質に近づけるためのFW</p>
-              <h4>なぜ作ったか</h4>
-              <p>claude code等のskillは分割されたコンテキストでしかなく、品質や再現性を担保できない。そこで、コーディング業務をワークフロー化し、注入するコンテキストを限定的なものにする。そして、レビュー観点を整理して強制することで、無関心の谷の発生やサボり癖・暴走を排除し、「100点」のコードに近づく仕組みを構築したかった。</p>
-              <h4>特徴</h4>
-              <ul>
-                <li>使用するLLMを任意で選択できるprofileシステム
-                  <ul>
-                    <li>codex app-server</li>
-                    <li>claude -p</li>
-                  </ul>
+                <li>サービスの価値について考えるのが大好き
+                  <ul><li>一日中考えてしまうこともある</li></ul>
                 </li>
-                <li>多重・複数種LLMによる観点別レビューゲート</li>
-                <li>LLM動作のログ出力によるオブザーバビリティ</li>
-                <li>ワークフロー自体をLLMに実行させる前提のpilot用スキルの整備</li>
-                <li>（フロントエンド側は不完全）</li>
-              </ul>
-              <h4>技術</h4>
-              <ul>
-                <li>Node.js 22+</li>
-                <li>TypeScript 5.8</li>
+                <li>最近知識欲が出てきて学習が楽しい
+                  <ul><li>最近は積まれている技術書を消費する毎日</li></ul>
+                </li>
+                <li>レスポンスは速ければ速いほどいい派</li>
+                <li>完璧主義（長所でも短所でもある）</li>
+                <li>義理堅く誠実だとよく言われます</li>
+                <li>猫派</li>
+                <li>映画・ドラマ・漫画・ゲーム・アニメ、エンターテイメントを消費するのが好き</li>
+                <li>第一子が産まれて自分の時間を確保するのが大変</li>
               </ul>
             </div>
             <div class="card-fade"><span class="card-fade-text">続きを読む ▼</span></div>
           </div>
           <div class="card-collapse"><span onclick="collapseCard(this)">閉じる ▲</span></div>
         </div>
-
       </div>
     </section>
   </main>
